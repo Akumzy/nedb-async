@@ -1,7 +1,7 @@
 # Nedb-Async
 **nedb-async is a simply promise base wrapper methods for <a href="https://github.com/louischatriot/nedb">Nedb</a>**
 
-How to use? Is very simply, so to avoid to much complexity all the cursor modifiers for ``find findOne and count`` methods have to be pass and as the last argument in a array to differentiate is from the
+How to use? Is very simply, so to avoid too much complexity all the cursor modifiers for ``find, findOne and count`` methods have to be pass as the last argument in a array to differentiate them from the
 *query, projection and option* parameters which are mainly `object`
 
 ****
