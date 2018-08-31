@@ -1,7 +1,11 @@
 {
   "name": "nedb-async",
   "version": "0.0.1",
-  "description": "Promise wrapper for Nedb that makes it possible to use Nedb all cursor modifiers.  ",
+  "description": "Promise wrapper for Nedb that makes it possible to use all Nedb all cursor modifiers. ",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Akumzy/nedb-async"
+  },
   "main": "./dist",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
