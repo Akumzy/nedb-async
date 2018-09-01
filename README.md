@@ -1,7 +1,16 @@
 # Nedb-Async
 **nedb-async is a simply promise base wrapper methods for <a href="https://github.com/louischatriot/nedb">Nedb</a>**
 
-How to use? Is very simply, so to avoid to much complexity all the cursor modifiers for ``find findOne and count`` methods have to be pass and as the last argument in a array to differentiate is from the
+```
+  //Install with npm
+
+  npm i nedb-async --save
+
+  //or with yarn
+
+  yarn add nedb-async
+```
+How to use? Is very simply, so too avoid to much complexity all the cursor modifiers for ``find, findOne and count`` methods have to be pass as the last argument in an array to differentiate is from the
 *query, projection and option* parameters which are mainly `object`
 
 ****
@@ -35,3 +44,6 @@ and every other nedb origin methods are still available
   }
 ```
 That's pretty very thing for more please use official <a href="https://github.com/louischatriot/nedb">Nedb</a> documentation or create an issue
+
+## Licence
+<a href="https://github.com/Akumzy/nedb-async/blob/master/LICENSE">here</a>
