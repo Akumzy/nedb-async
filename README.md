@@ -10,7 +10,7 @@
 
   yarn add nedb-async
 ```
-<img src="https://z-p3-scontent.flos9-1.fna.fbcdn.net/v/t1.0-9/40554772_1095078617308441_1534620702810832896_n.jpg?_nc_cat=0&oh=530aa91224924b3b95930938af9d8d77&oe=5BEEB300" alt="Nedb promise test">
+<img src="https://z-p3-scontent.flos9-1.fna.fbcdn.net/v/t1.0-9/40517761_1095400233942946_1511611996070477824_n.jpg?_nc_cat=0&oh=8d3a070b9fceb9e4157ae17f89746637&oe=5C357C29" alt="Nedb promise test">
 How to use? Is very simply, so too avoid to much complexity all the cursor modifiers for ``find, findOne and count`` methods have to be pass as the last argument in an array to differentiate is from the
 *query, projection and option* parameters which are mainly `object`
 
