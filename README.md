@@ -11,8 +11,7 @@
   yarn add nedb-async
 ```
 <img src="https://z-p3-scontent.flos9-1.fna.fbcdn.net/v/t1.0-9/40517761_1095400233942946_1511611996070477824_n.jpg?_nc_cat=0&oh=8d3a070b9fceb9e4157ae17f89746637&oe=5C357C29" alt="Nedb promise test">
-How to use? Is very simply, so too avoid to much complexity all the cursor modifiers for 
-
+How to use? It is very simple, so to avoid too much complexity all the cursor modifiers for 
 ` find, findOne and count ` 
 methods have to be pass as the last argument in an array to differentiate is from the
 *query, projection and option* parameters which are mainly `object`
@@ -30,7 +29,7 @@ methods have to be pass as the last argument in an array to differentiate is fro
 
 and every other nedb origin methods are still available
 
-## Usuage:
+## Usage:
 
 ```js
   db.asyncFind({},[ ['sort', {name: -1}], ['limit',2] ]).then(function (docs) {
@@ -47,7 +46,21 @@ and every other nedb origin methods are still available
     let users = await db.asyncCount({})
   }
 ```
-That's pretty very thing for more please use official <a href="https://github.com/louischatriot/nedb">Nedb</a> documentation or create an issue
+
+For Nodejs
+```js
+const DB = require('nedb-async').default;
+
+var data = new DB({
+  filename: 'data.db',
+  autoload: true
+});
+
+data.loadDatabase();
+```
+
+
+That's pretty everything for more please use official <a href="https://github.com/louischatriot/nedb">Nedb</a> documentation or create an issue
 
 ## Licence
 <a href="https://github.com/Akumzy/nedb-async/blob/master/LICENSE">here</a>
