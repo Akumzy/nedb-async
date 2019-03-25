@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.promisefy = function (name, _arg) {
+function promisefy(name, _arg) {
     return new Promise((rs, rj) => {
         /**
          * Check if the last argument is
@@ -62,7 +62,8 @@ exports.promisefy = function (name, _arg) {
                     rs(docs);
             });
     });
-};
+}
+exports.promisefy = promisefy;
 function justPromise(name, arg) {
     return new Promise((rs, rj) => {
         // @ts-ignore

@@ -6,27 +6,27 @@ export default class AsyncNedb extends Nedb {
     super(pathOrOptions)
   }
   public asyncFind<T>(query: any, projection?: T) {
-    return promisefy.call(this, 'find', arguments)
+    return promisefy.call(this, 'find', arguments) as Promise<T[]>
   }
-asyncCount() {
+asyncCount(query: any) {
   return promisefy.call(this, 'count', arguments)
 }
 asyncFindOne<T>(query: any, projection?: T) {
-  return promisefy.call(this, 'findOne', arguments)
+  return promisefy.call(this, 'findOne', arguments) as Promise<T>
 }
-asyncInsert() {
+asyncInsert<T>(newDoc: T) {
   return justPromise.call(this, 'insert', arguments)
 }
 asyncUpdate(query: any, updateQuery: any, options?: Nedb.UpdateOptions) {
   return justPromise.call(this, 'update', arguments)
 }
-asyncRemove() {
-  return justPromise.call(this, 'remove', arguments)
+asyncRemove(query: any, options?: Nedb.RemoveOptions) {
+  return justPromise.call(this, 'remove', arguments) 
 }
-asyncEnsureIndex() {
+asyncEnsureIndex(options: Nedb.EnsureIndexOptions,) {
   return justPromise.call(this, 'ensureIndex', arguments)
 }
-asyncRemoveIndex(...arg: []) {
+asyncRemoveIndex(fieldName: string) {
   return justPromise.call(this, 'removeIndex', arguments)
 }
 }

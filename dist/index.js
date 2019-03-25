@@ -9,25 +9,25 @@ class AsyncNedb extends Nedb {
     asyncFind(query, projection) {
         return util_1.promisefy.call(this, 'find', arguments);
     }
-    asyncCount() {
+    asyncCount(query) {
         return util_1.promisefy.call(this, 'count', arguments);
     }
     asyncFindOne(query, projection) {
         return util_1.promisefy.call(this, 'findOne', arguments);
     }
-    asyncInsert() {
+    asyncInsert(newDoc) {
         return util_1.justPromise.call(this, 'insert', arguments);
     }
     asyncUpdate(query, updateQuery, options) {
         return util_1.justPromise.call(this, 'update', arguments);
     }
-    asyncRemove() {
+    asyncRemove(query, options) {
         return util_1.justPromise.call(this, 'remove', arguments);
     }
-    asyncEnsureIndex() {
+    asyncEnsureIndex(options) {
         return util_1.justPromise.call(this, 'ensureIndex', arguments);
     }
-    asyncRemoveIndex(...arg) {
+    asyncRemoveIndex(fieldName) {
         return util_1.justPromise.call(this, 'removeIndex', arguments);
     }
 }

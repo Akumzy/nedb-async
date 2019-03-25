@@ -1,4 +1,4 @@
-export const promisefy = function (name: string, _arg:IArguments) {
+export function promisefy<T>(name: string, _arg:IArguments):Promise<T[]|T> {
   return new Promise((rs, rj) => {
       /**
        * Check if the last argument is

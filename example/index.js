@@ -8,6 +8,7 @@ let db = new DB({
 
 ;
 ( async () => {
+  console.log(await db.asyncEnsureIndex({fieldName:'name', unique:true}));
   console.log(await db.asyncInsert({name: 'Akuma'}));
 
   console.log(await db.asyncInsert([{name: 'Isaac'},{name: 'Promise'}]))
