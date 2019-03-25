@@ -1,7 +1,8 @@
 # Nedb-Async
 **nedb-async is a simply promise base wrapper methods for <a href="https://github.com/louischatriot/nedb">Nedb</a>**
 
-```
+```bash
+
   //Install with npm
 
   npm i nedb-async
@@ -10,11 +11,11 @@
 
   yarn add nedb-async
 ```
-<img src="https://z-p3-scontent.flos9-1.fna.fbcdn.net/v/t1.0-9/40517761_1095400233942946_1511611996070477824_n.jpg?_nc_cat=0&oh=8d3a070b9fceb9e4157ae17f89746637&oe=5C357C29" alt="Nedb promise test">
-How to use? It is very simple, so to avoid too much complexity all the cursor modifiers for 
+## Usage
+It is very simple and to avoid too much complexity all the cursor modifiers for 
 ` find, findOne and count ` 
-methods have to be pass as the last argument in an array to differentiate is from the
-*query, projection and option* parameters which are mainly `object`
+methods has to be pass as the last argument in an array.
+
 
 ****
 **Very important to know that all the promise base methods starts with async then the method name in camel casing**

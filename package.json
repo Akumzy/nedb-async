@@ -1,14 +1,14 @@
 {
   "name": "nedb-async",
-  "version": "0.0.5",
-  "description": "Promise wrapper for Nedb that makes it possible to use all Nedb all cursor modifiers. ",
+  "version": "0.0.6",
+  "description": "Promise wrapper for Nedb that makes it possible to use all Nedb all cursor modifiers.",
   "repository": {
     "type": "git",
     "url": "https://github.com/Akumzy/nedb-async"
   },
-  "main": "./dist",
+  "main": "./dist/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc -p ./tsconfig.json"
   },
   "keywords": [
     "nedb",
@@ -24,7 +24,7 @@
   "author": "Akuma Isaac Akuma",
   "license": "MIT",
   "dependencies": {
-    "@types/nedb": "^1.8.5",
+    "@types/nedb": "^1.8.7",
     "nedb": "^1.8.0"
   }
 }

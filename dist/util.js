@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.promisefy = function (name, arg) {
+exports.promisefy = function (name, _arg) {
     return new Promise((rs, rj) => {
         /**
          * Check if the last argument is
@@ -8,6 +8,7 @@ exports.promisefy = function (name, arg) {
          * I choose array because all Nedb
          * parameters are objec
          */
+        let arg = [..._arg];
         if (Array.isArray(arg[arg.length - 1])) {
             const modifies = arg.pop();
             /**
@@ -62,7 +63,7 @@ exports.promisefy = function (name, arg) {
             });
     });
 };
-exports.justPromise = function (name, arg) {
+function justPromise(name, arg) {
     return new Promise((rs, rj) => {
         // @ts-ignore
         this[name](...arg, (err, docs) => {
@@ -72,4 +73,5 @@ exports.justPromise = function (name, arg) {
                 rs(docs);
         });
     });
-};
+}
+exports.justPromise = justPromise;

@@ -1,4 +1,4 @@
-export const promisefy = function (name: string, arg: []) {
+export const promisefy = function (name: string, _arg:IArguments) {
   return new Promise((rs, rj) => {
       /**
        * Check if the last argument is
@@ -6,6 +6,7 @@ export const promisefy = function (name: string, arg: []) {
        * I choose array because all Nedb
        * parameters are objec
        */
+      let arg = [..._arg]
       if (Array.isArray(arg[arg.length - 1])) {
         const modifies = arg.pop()
         /**
@@ -53,7 +54,7 @@ export const promisefy = function (name: string, arg: []) {
         });
     });
 }
-export const justPromise = function (name: string, arg:[]) {
+export function justPromise (name: string, arg:IArguments) {
   return new Promise((rs, rj)=>{
     // @ts-ignore
     this[name](...arg, (err: any, docs: any) => {

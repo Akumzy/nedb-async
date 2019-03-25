@@ -1,37 +1,34 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-const nedb_1 = __importDefault(require("nedb"));
-const util_1 = require("./lib/util");
-class AsyncNedb extends nedb_1.default {
-    constructor(...arg) {
-        super(...arg);
+const Nedb = require("nedb");
+const util_1 = require("./util");
+class AsyncNedb extends Nedb {
+    constructor(pathOrOptions) {
+        super(pathOrOptions);
     }
-    asyncFind(...arg) {
-        return util_1.promisefy.call(this, 'find', arg);
+    asyncFind(query, projection) {
+        return util_1.promisefy.call(this, 'find', arguments);
     }
-    asyncCount(...arg) {
-        return util_1.promisefy.call(this, 'count', arg);
+    asyncCount() {
+        return util_1.promisefy.call(this, 'count', arguments);
     }
-    asyncFindOne(...arg) {
-        return util_1.promisefy.call(this, 'findOne', arg);
+    asyncFindOne(query, projection) {
+        return util_1.promisefy.call(this, 'findOne', arguments);
     }
-    asyncInsert(...arg) {
-        return util_1.justPromise.call(this, 'insert', arg);
+    asyncInsert() {
+        return util_1.justPromise.call(this, 'insert', arguments);
     }
-    asyncUpdate(...arg) {
-        return util_1.justPromise.call(this, 'update', arg);
+    asyncUpdate(query, updateQuery, options) {
+        return util_1.justPromise.call(this, 'update', arguments);
     }
-    asyncRemove(...arg) {
-        return util_1.justPromise.call(this, 'remove', arg);
+    asyncRemove() {
+        return util_1.justPromise.call(this, 'remove', arguments);
     }
-    asyncEnsureIndex(...arg) {
-        return util_1.justPromise.call(this, 'ensureIndex', arg);
+    asyncEnsureIndex() {
+        return util_1.justPromise.call(this, 'ensureIndex', arguments);
     }
     asyncRemoveIndex(...arg) {
-        return util_1.justPromise.call(this, 'removeIndex', arg);
+        return util_1.justPromise.call(this, 'removeIndex', arguments);
     }
 }
 exports.default = AsyncNedb;

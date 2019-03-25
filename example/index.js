@@ -1,6 +1,6 @@
-//Test with vscode extension quakka
-import DB from 'nedb-async';
-import path from "path";
+
+const path = require('path')
+const DB = require('../dist').default
 let db = new DB({
   filename: path.join(__dirname, "test.db"),
   autoload: true
@@ -10,7 +10,7 @@ let db = new DB({
 ( async () => {
   console.log(await db.asyncInsert({name: 'Akuma'}));
 
-  console.log(await db.asyncInsert([{name: 'Issac'},{name: 'Promise'}]))
+  console.log(await db.asyncInsert([{name: 'Isaac'},{name: 'Promise'}]))
 
   let a = await db.asyncFind({},[['limit',1],['sort', -1]])
 
