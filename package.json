@@ -1,6 +1,6 @@
 {
   "name": "nedb-async",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Promise wrapper for Nedb that makes it possible to use all Nedb all cursor modifiers.",
   "repository": {
     "type": "git",

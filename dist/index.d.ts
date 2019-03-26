@@ -9,4 +9,5 @@ export default class AsyncNedb extends Nedb {
     asyncRemove(query: any, options?: Nedb.RemoveOptions): Promise<{}>;
     asyncEnsureIndex(options: Nedb.EnsureIndexOptions): Promise<{}>;
     asyncRemoveIndex(fieldName: string): Promise<{}>;
+    asyncLoadDatabase(): Promise<{}>;
 }

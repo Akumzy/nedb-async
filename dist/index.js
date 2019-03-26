@@ -30,5 +30,12 @@ class AsyncNedb extends Nedb {
     asyncRemoveIndex(fieldName) {
         return util_1.justPromise.call(this, 'removeIndex', arguments);
     }
+    asyncLoadDatabase() {
+        return new Promise((resolve, reject) => {
+            this.loadDatabase((err) => {
+                err ? reject(err) : resolve(true);
+            });
+        });
+    }
 }
 exports.default = AsyncNedb;
