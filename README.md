@@ -1,67 +1,84 @@
 # Nedb-Async
+
 **nedb-async is a simply promise base wrapper methods for <a href="https://github.com/louischatriot/nedb">Nedb</a>**
 
+## Installation
+Install with npm
 ```bash
-
-  //Install with npm
-
-  npm i nedb-async
-
-  //or with yarn
-
+  npm install nedb-async
+```
+or with yarn
+```bash
   yarn add nedb-async
 ```
+
 ## Usage
-It is very simple and to avoid too much complexity all the cursor modifiers for 
-` find, findOne and count ` 
+
+It is very simple and to avoid too much complexity all the cursor modifiers for
+`find, findOne and count`
 methods has to be pass as the last argument in an array.
 
+---
 
-****
 **Very important to know that all the promise base methods starts with async then the method name in camel casing**
-- asyncFind
-- asyncFindOne
-- asyncCount
-- asyncInsert
-- asyncUpdate
-- asyncRemove
-- asyncEnsureIndex
-- asyncRemoveIndex
 
-and every other nedb origin methods are still available
+- `asyncFind`
+- `asyncFindOne`
+- `asyncCount`
+- `asyncInsert`
+- `asyncUpdate`
+- `asyncRemove`
+- `asyncEnsureIndex`
+- `asyncRemoveIndex`
+
+and every other ned`b origin methods are still available.
 
 ## Usage:
 
 ```js
-  db.asyncFind({},[ ['sort', {name: -1}], ['limit',2] ]).then(function (docs) {
+db.asyncFind({}, [['sort', { name: -1 }], ['limit', 2]])
+  .then(function(docs) {})
+  .catch(function(error) {})
+//Or with async await
+async function getUsers() {
+  let users = await db.asyncFind({}, [['limit', 100]])
+}
 
-  }).catch(function(error) {
-
-  })
-  //Or with async await
-  async function getUsers() {
-    let users = await db.asyncFind({}, [ ['limit', 100] ])
-  }
-  
-  async function countAllUsers() {
-    let users = await db.asyncCount({})
-  }
+async function countAllUsers() {
+  let users = await db.asyncCount({})
+}
 ```
 
 For Nodejs
+
 ```js
-const DB = require('nedb-async').default;
+const DB = require('nedb-async')
 
-var data = new DB({
+const data = new Nedb({
   filename: 'data.db',
-  autoload: true
-});
-
-data.loadDatabase();
+  autoload: true,
+})
 ```
 
+## Typescript
 
-That's pretty everything for more please use official <a href="https://github.com/louischatriot/nedb">Nedb</a> documentation or create an issue
+For typescript users conceder using this approach for better types support
+
+```ts
+import Nedb from 'nedb-async'
+
+interface IUser {
+  firstName: string
+  lastName: string
+  age: number
+  email: string
+}
+
+const User = new Nedb<IUser>({ filename: 'data.db', autoload: true })
+```
+
+Please use the official <a href="https://github.com/louischatriot/nedb">Nedb</a> documentation for more information.
 
 ## Licence
-<a href="https://github.com/Akumzy/nedb-async/blob/master/LICENSE">here</a>
+
+MIT

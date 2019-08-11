@@ -1,7 +1,7 @@
 import { promisefy, justPromise } from './util'
 import Nedb = require('nedb')
 
-export default class AsyncNedb<G> extends Nedb<G> {
+export class AsyncNedb<G> extends Nedb<G> {
   constructor(pathOrOptions?: string | Nedb.DataStoreOptions | undefined) {
     super(pathOrOptions)
   }
@@ -37,3 +37,4 @@ export default class AsyncNedb<G> extends Nedb<G> {
     })
   }
 }
+export default AsyncNedb

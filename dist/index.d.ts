@@ -1,5 +1,5 @@
 import Nedb = require('nedb');
-export default class AsyncNedb<G> extends Nedb<G> {
+export declare class AsyncNedb<G> extends Nedb<G> {
     constructor(pathOrOptions?: string | Nedb.DataStoreOptions | undefined);
     asyncFind<T>(query: any, projection?: T): Promise<T[]>;
     asyncCount(query: any): Promise<unknown>;
@@ -11,3 +11,4 @@ export default class AsyncNedb<G> extends Nedb<G> {
     asyncRemoveIndex(fieldName: string): Promise<unknown>;
     asyncLoadDatabase(): Promise<unknown>;
 }
+export default AsyncNedb;

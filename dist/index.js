@@ -38,4 +38,5 @@ class AsyncNedb extends Nedb {
         });
     }
 }
+exports.AsyncNedb = AsyncNedb;
 exports.default = AsyncNedb;
