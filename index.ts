@@ -1,7 +1,7 @@
-import * as Nedb from "nedb";
-import { promisefy, justPromise } from "./util";
+import { promisefy, justPromise } from './util'
+import Nedb = require('nedb')
 
-export default class AsyncNedb extends Nedb {
+export default class AsyncNedb<G> extends Nedb<G> {
   constructor(pathOrOptions?: string | Nedb.DataStoreOptions | undefined) {
     super(pathOrOptions)
   }
@@ -23,7 +23,7 @@ export default class AsyncNedb extends Nedb {
   asyncRemove(query: any, options?: Nedb.RemoveOptions) {
     return justPromise.call(this, 'remove', arguments)
   }
-  asyncEnsureIndex(options: Nedb.EnsureIndexOptions, ) {
+  asyncEnsureIndex(options: Nedb.EnsureIndexOptions) {
     return justPromise.call(this, 'ensureIndex', arguments)
   }
   asyncRemoveIndex(fieldName: string) {
@@ -31,9 +31,9 @@ export default class AsyncNedb extends Nedb {
   }
   asyncLoadDatabase() {
     return new Promise((resolve, reject) => {
-      this.loadDatabase((err) => {
+      this.loadDatabase(err => {
         err ? reject(err) : resolve(true)
       })
-    });
+    })
   }
 }

@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const Nedb = require("nedb");
 const util_1 = require("./util");
+const Nedb = require("nedb");
 class AsyncNedb extends Nedb {
     constructor(pathOrOptions) {
         super(pathOrOptions);
@@ -32,7 +32,7 @@ class AsyncNedb extends Nedb {
     }
     asyncLoadDatabase() {
         return new Promise((resolve, reject) => {
-            this.loadDatabase((err) => {
+            this.loadDatabase(err => {
                 err ? reject(err) : resolve(true);
             });
         });
