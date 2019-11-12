@@ -1,6 +1,7 @@
 node_modules
 yarn.lock
 dist
+yarn-error.log
 
 # IDE / intellij stuff
 *.iml
