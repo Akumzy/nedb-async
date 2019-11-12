@@ -6,9 +6,16 @@
     "type": "git",
     "url": "https://github.com/Akumzy/nedb-async"
   },
-  "main": "./dist/index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist/**/*"
+  ],
   "scripts": {
-    "build": "tsc -p ./tsconfig.json"
+    "build": "tsc -p tsconfig.json",
+    "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
+    "lint": "tslint -p tsconfig.json",
+    "prepare": "yarn build"
   },
   "keywords": [
     "nedb",
@@ -24,9 +31,13 @@
   "author": "Akuma Isaac Akuma",
   "license": "MIT",
   "dependencies": {
-    "nedb": "git+https://github.com/HalleyAssist/nedb.git"
+    "nedb": "^1.8.0"
   },
   "devDependencies": {
-    "@types/nedb": "^1.8.8"
+    "@types/nedb": "^1.8.8",
+    "prettier": "^1.19.1",
+    "tslint": "^5.20.1",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "^3.7.2"
   }
 }
