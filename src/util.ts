@@ -1,4 +1,4 @@
-export function promisefy<T>(name: string, _arg:IArguments):Promise<T[]|T> {
+export function promisefy<T>(name: string, args:IArguments):Promise<T[]|T> {
   return new Promise((rs, rj) => {
       /**
        * Check if the last argument is
@@ -6,9 +6,9 @@ export function promisefy<T>(name: string, _arg:IArguments):Promise<T[]|T> {
        * I choose array because all Nedb
        * parameters are objec
        */
-      let arg = [..._arg]
+      const arg = [...args];
       if (Array.isArray(arg[arg.length - 1])) {
-        const modifies = arg.pop()
+        const modifies = arg.pop();
         /**
          * nedb methods like
          * find, count, and findOne
@@ -21,11 +21,13 @@ export function promisefy<T>(name: string, _arg:IArguments):Promise<T[]|T> {
         let count = 1;
         // @ts-ignore
         for (const modify of modifies) {
-          let valid = ['sort','limit','skip']
-          if (valid.indexOf(modify[0]) == -1)
+          const valid = ['sort','limit','skip'];
+          if (valid.indexOf(modify[0]) === -1) {
             throw new Error(`${modify[0]} is not recognize, available methods are ${valid.join(',')}`)
-          if(typeof modify[0] !== 'string')
+          }
+          if(typeof modify[0] !== 'string') {
             throw new Error(`${modify[0]} must be a type of string, available methods are ${valid.join(',')}`)
+          }
           /**
            * If this modify is the last
            * element of the modifies
@@ -40,26 +42,38 @@ export function promisefy<T>(name: string, _arg:IArguments):Promise<T[]|T> {
            */
           if (count === arg.length) {
             cursor[modify[0]](modify[1]).exec((err:any, docs:any) => {
-              if (err) rj(err)
-              else rs(docs)
+              if (err){
+                rj(err)
+              } else {
+                rs(docs)
+              }
             });
-          } else cursor[modify[0]](modify[1]);
+          } else {
+            cursor[modify[0]](modify[1]);
+          }
           count++
         }
-      } else
-      // @ts-ignore
+      } else{
+        // @ts-ignore
         this[name](...arg, (err: any, docs: any) => {
-          if (err) rj(err);
-          else rs(docs);
+          if (err){
+            rj(err)
+          } else {
+            rs(docs)
+          }
         });
+      }
     });
 }
 export function justPromise (name: string, arg:IArguments) {
   return new Promise((rs, rj)=>{
     // @ts-ignore
     this[name](...arg, (err: any, docs: any) => {
-      if (err) rj(err);
-      else rs(docs);
+      if (err) {
+        rj(err)
+      } else {
+        rs(docs);
+      }
     })
   })
 }
