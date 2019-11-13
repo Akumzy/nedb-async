@@ -1,6 +1,7 @@
 # Nedb-Async
 
-**nedb-async is a simply promise base wrapper methods for <a href="https://github.com/louischatriot/nedb">Nedb</a>**
+**nedb-async is a simply promise base wrapper methods for 
+[Nedb](https://github.com/louischatriot/nedb)**
 
 ## Installation
 Install with npm
@@ -16,7 +17,7 @@ or with yarn
 
 It is very simple and to avoid too much complexity all the cursor modifiers for
 `find, findOne and count`
-methods has to be pass as the last argument in an array.
+methods have to be passed as the last argument in an array.
 
 ---
 
@@ -52,9 +53,9 @@ async function countAllUsers() {
 For Nodejs
 
 ```js
-const DB = require('nedb-async')
+const { AsyncNedb } = require('nedb-async')
 
-const data = new Nedb({
+const data = new AsyncNedb({
   filename: 'data.db',
   autoload: true,
 })
@@ -62,10 +63,10 @@ const data = new Nedb({
 
 ## Typescript
 
-For typescript users conceder using this approach for better types support
+For typescript users consider using this approach for better types support
 
 ```ts
-import Nedb from 'nedb-async'
+import AsyncNedb from 'nedb-async'
 
 interface IUser {
   firstName: string
@@ -78,6 +79,34 @@ const User = new Nedb<IUser>({ filename: 'data.db', autoload: true })
 ```
 
 Please use the official <a href="https://github.com/louischatriot/nedb">Nedb</a> documentation for more information.
+
+## Development
+After you've cloned this repo, there are some built-in commands to aid in development:
+
+**Build the package** -  outputs built files to `./dist/`. These are the ones that will ultimately end up in the pacakage.
+```bash
+npm run-script build
+```
+or
+```bash
+yarn build
+```
+**Linter** - runs standard lint checks to keep code clean.
+```bash
+npm run-script lint
+```
+or
+```bash
+yarn lint
+```
+**Formatter** - formats the code **in place** for consistency.
+```bash
+npm run-script format
+```
+or
+```bash
+yarn format
+```
 
 ## Licence
 
