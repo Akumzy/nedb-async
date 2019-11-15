@@ -15,7 +15,8 @@
     "build": "tsc -p tsconfig.json",
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
     "lint": "tslint -p tsconfig.json",
-    "prepare": "yarn build"
+    "prepare": "yarn build",
+    "preversion": "yarn lint"
   },
   "keywords": [
     "nedb",
