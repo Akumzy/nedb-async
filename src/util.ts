@@ -36,7 +36,7 @@ export function promisefy<T>(name: string, args: IArguments): Promise<T[] | T> {
          * two elements, first element
          * being the method name while
          * the last element the method
-         * arugument
+         * argument
          * ['sort',{name: -1, createdAt: -1}]
          * and so on
          */

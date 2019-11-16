@@ -6,3 +6,5 @@ yarn-error.log
 # IDE / intellij stuff
 *.iml
 .idea
+
+*.db

@@ -1,6 +1,6 @@
 {
   "name": "nedb-async",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Promise wrapper for Nedb that makes it possible to use all Nedb all cursor modifiers.",
   "repository": {
     "type": "git",
@@ -16,7 +16,8 @@
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
     "lint": "tslint -p tsconfig.json",
     "prepare": "yarn build",
-    "preversion": "yarn lint"
+    "preversion": "yarn lint",
+    "test": "mocha -r ts-node/register src/**/*.spec.ts"
   },
   "keywords": [
     "nedb",
@@ -29,14 +30,22 @@
     "nw.js",
     "node"
   ],
-  "author": "Akuma Isaac Akuma",
+  "author": {
+    "name": "Akuma Isaac Akuma",
+    "email": "akumaisaacakuma@gmail.com"
+  },
   "license": "MIT",
   "dependencies": {
     "nedb": "^1.8.0"
   },
   "devDependencies": {
+    "@types/chai": "^4.2.5",
+    "@types/mocha": "^5.2.7",
     "@types/nedb": "^1.8.8",
+    "chai": "^4.2.0",
+    "mocha": "^6.2.2",
     "prettier": "^1.19.1",
+    "ts-node": "^8.5.2",
     "tslint": "^5.20.1",
     "tslint-config-prettier": "^1.18.0",
     "typescript": "^3.7.2"
