@@ -16,8 +16,11 @@
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
     "lint": "tslint -p tsconfig.json",
     "prepare": "yarn build",
+    "prepublishOnly": "yarn test && yarn lint",
     "preversion": "yarn lint",
-    "test": "mocha -r ts-node/register src/**/*.spec.ts"
+    "test": "jest --config jestconfig.json",
+    "version": "yarn format && git add -A src",
+    "postversion": "git push && git push --tags"
   },
   "keywords": [
     "nedb",
@@ -39,6 +42,7 @@
     "nedb": "^1.8.0"
   },
   "devDependencies": {
+<<<<<<< HEAD
     "@types/chai": "^4.2.5",
     "@types/mocha": "^5.2.7",
     "@types/nedb": "^1.8.8",
@@ -46,6 +50,14 @@
     "mocha": "^6.2.2",
     "prettier": "^1.19.1",
     "ts-node": "^8.5.2",
+=======
+    "@types/jest": "^24.0.23",
+    "@types/nedb": "^1.8.8",
+    "jest": "^24.9.0",
+    "lodash": "^4.17.15",
+    "prettier": "^1.19.1",
+    "ts-jest": "^24.1.0",
+>>>>>>> d854364e91d0a7a028071c571f93d43b5d6ed4b7
     "tslint": "^5.20.1",
     "tslint-config-prettier": "^1.18.0",
     "typescript": "^3.7.2"
