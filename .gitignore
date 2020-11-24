@@ -9,3 +9,5 @@ yarn-error.log
 
 *.db
 coverage
+package-lock.json
+yarn.lock
