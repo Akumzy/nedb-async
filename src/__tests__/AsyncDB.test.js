@@ -2,7 +2,7 @@
 const _ = require('lodash');
 const { AsyncNedb } = require('../index');
 
-
+/** @type {AsyncNedb<any>} */
 let db;
 const testVal1 = 'testVal1';
 const testVal2 = 'testVal2';
@@ -10,23 +10,20 @@ const testVal3 = 'testVal3';
 const testData1 = { aField: testVal1 };
 const testData2 = { aField: testVal2 };
 const testData3 = { aField: testVal3 };
-const testDataArr = [testData1, testData2, testData3];
-
+const data = [{ name: 'Kalu' }, { name: 'Isaac' }, { name: 'Akuma' }];
 let recs;
 
-const addMany = async()=> {
+const addMany = async () => {
   recs = await db.asyncInsert({ somedata: 'ok' });
   recs = await db.asyncInsert({ somedata: 'again', plus: 'additional data' });
   recs = await db.asyncInsert({ somedata: 'again' });
 };
 
-beforeEach(()=>{
+beforeEach(() => {
   db = new AsyncNedb({ inMemoryOnly: true });
-  
 });
 
-test('Insert and retrieve a document', async ()=>{
-
+test('Insert and retrieve a document', async () => {
   recs = await db.asyncFind({});
   expect(recs.length).toEqual(0);
 
@@ -40,10 +37,9 @@ test('Insert and retrieve a document', async ()=>{
   expect(recs[0].aField).toEqual(testVal1);
 
   expect(recs[0]._id).toBeDefined();
-
 });
 
-test('Insert and retrieve multiple documents', async ()=>{
+test('Insert and retrieve multiple documents', async () => {
   let recs = await db.asyncFind({});
   expect(recs.length).toEqual(0);
 
@@ -54,9 +50,9 @@ test('Insert and retrieve multiple documents', async ()=>{
   recs = await db.asyncFind({});
   expect(recs.length).toEqual(3);
 
-  expect( _.map(recs, 'aField') ).toContain(testVal1);
-  expect( _.map(recs, 'aField') ).toContain(testVal2);
-  expect( _.map(recs, 'aField') ).toContain(testVal3);
+  expect(_.map(recs, 'aField')).toContain(testVal1);
+  expect(_.map(recs, 'aField')).toContain(testVal2);
+  expect(_.map(recs, 'aField')).toContain(testVal3);
 
   expect(Object.keys(recs[2]).length).toEqual(2);
 
@@ -64,10 +60,9 @@ test('Insert and retrieve multiple documents', async ()=>{
   expect(recs[2]._id).toBeDefined();
   expect(recs[1]._id).toBeDefined();
   expect(recs[0]._id).toBeDefined();
-  
 });
 
-test('Insert and retrieve complex objects', async () =>{
+test('Insert and retrieve complex objects', async () => {
   let recs = await db.asyncFind({});
   expect(recs.length).toEqual(0);
 
@@ -84,54 +79,46 @@ test('Insert and retrieve complex objects', async () =>{
   expect(rec.date.getTime()).toEqual(da.getTime());
   expect(rec.subobj.a).toEqual('b');
   expect(rec.subobj.b).toEqual('c');
-
 });
 
-test("Count One", async()=>{
+test('Count One', async () => {
   recs = await db.asyncInsert(testData1);
 
   const cnt = await db.asyncCount({});
   expect(cnt).toEqual(1);
-
 });
 
-test("Count with query", async()=>{
+test('Count with query', async () => {
   await addMany();
-  
-  let cnt = await db.asyncCount({somedata:'again'});
+
+  let cnt = await db.asyncCount({ somedata: 'again' });
   expect(cnt).toEqual(2);
 
-  cnt = await db.asyncCount({somedata:'nope'});
+  cnt = await db.asyncCount({ somedata: 'nope' });
   expect(cnt).toEqual(0);
-  
 });
 
-test("Update a record", async()=>{
+test('Update a record', async () => {
   await addMany();
 
-  let cnt = await db.asyncUpdate( {somedata:'again'}, {newDoc: 'yes'});
+  let cnt = await db.asyncUpdate({ somedata: 'again' }, { newDoc: 'yes' });
   expect(cnt).toEqual(1);
 
-  cnt = await db.asyncCount({somedata:'nope'});
+  cnt = await db.asyncCount({ somedata: 'nope' });
   expect(cnt).toEqual(0);
-
 });
 
-test("Update many records", async()=>{
+test('Update many records', async () => {
   await addMany();
 
-  let cnt = await db.asyncUpdate( {somedata:'again'}, {newDoc: 'yes'}, {multi:'yes'});
+  let cnt = await db.asyncUpdate({ somedata: 'again' }, { newDoc: 'yes' }, { multi: 'yes' });
   expect(cnt).toEqual(2);
 
-  cnt = await db.asyncCount({somedata:'nope'});
+  cnt = await db.asyncCount({ somedata: 'nope' });
   expect(cnt).toEqual(0);
-
 });
 
-
-
-
-test("Delete a record", async () => {
+test('Delete a record', async () => {
   await addMany();
 
   let cnt = await db.asyncCount({ somedata: 'again' });
@@ -142,19 +129,36 @@ test("Delete a record", async () => {
 
   cnt = await db.asyncCount({});
   expect(cnt).toEqual(2);
-
 });
 
-test("Delete many records", async () => {
+test('Delete many records', async () => {
   await addMany();
 
   let cnt = await db.asyncCount({ somedata: 'again' });
   expect(cnt).toEqual(2);
 
-  cnt = await db.asyncRemove({ somedata: 'again' }, {multi:true});
+  cnt = await db.asyncRemove({ somedata: 'again' }, { multi: true });
   expect(cnt).toEqual(2);
 
   cnt = await db.asyncCount({});
   expect(cnt).toEqual(1);
+});
 
+test('Sort returned records', async () => {
+  await db.asyncRemove({}, { multi: true });
+  await db.asyncInsert(data);
+  const results = await db.asyncFind({}, [['sort', { name: 1 }]]);
+
+  expect(results[0].name).toEqual(data[2].name);
+  expect(results[1].name).toEqual(data[1].name);
+  expect(results[2].name).toEqual(data[0].name);
+});
+
+test('Limit returned record', async () => {
+  await db.asyncRemove({}, { multi: true });
+  await db.asyncInsert(data);
+  let results = await db.asyncFind({}, [['limit', 1]]);
+  expect(results.length).toEqual(1);
+  results = await db.asyncFind({}, [['limit', 3]]);
+  expect(results.length).toEqual(3);
 });
