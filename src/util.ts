@@ -22,7 +22,7 @@ export function promisefy<T>(name: string, args: IArguments): Promise<T[] | T> {
 
       for (const [method, value] of modifies) {
         const valid = ['sort', 'limit', 'skip'];
-        if (valid.includes(method)) {
+        if (!valid.includes(method)) {
           throw new Error(`${method} is not recognized, available methods are ${valid.join(',')}`);
         }
         if (typeof method !== 'string') {
